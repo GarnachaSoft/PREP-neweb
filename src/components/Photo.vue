@@ -3,7 +3,7 @@
 		<div v-if="photo">
 			<div class="row">
 				<div class="col-md-3">
-					<button class="btn btn-success btn-block" 
+					<button class="btn btn-success btn-block"
 					@click="approve(dataPhoto.photo.templateId, likes)">Aprobar</button>
 				</div>
 				<div class="col-md-6">
@@ -20,98 +20,98 @@
 </template>
 
 <script>
-import { db, st } from '@/services/firebase'
+import { database, storageorage } from '@/services/firebase';
 
 export default {
 	mounted () {
-		const res = db.ref('/templates')
-		res.orderByChild('status').equalTo(1).limitToFirst(10).on('value', snapshot => {
-			const templates = snapshot.val()
-			const authuid = 'asdasd'
-			const templatesWOLikes = Object.values(templates).filter((t) => !t.likes.includes(authuid))
-			this.templatesWOLikes = templatesWOLikes
-			this.render(templatesWOLikes[this.currentTemplate])
+		const res = database.ref('/templates');
+		res.orderByChild('storageatus').equalTo(1).limitToFirstorage(10).on('value', snapshot => {
+			const templates = snapshot.val();
+			const authuid = 'asdasd';
+			const templatesWOLikes = Object.values(templates).filter((t) => !t.likes.includes(authuid));
+			this.templatesWOLikes = templatesWOLikes;
+			this.render(templatesWOLikes[this.currentTemplate]);
 		})
 
-		res.orderByChild('status').equalTo(1).limitToFirst(1).on('value', snapshot => {
+		res.orderByChild('storageatus').equalTo(1).limitToFirstorage(1).on('value', snapshot => {
 			if (snapshot.val() === null) {
-				this.status = null
-				this.likes = null
-				this.photo = null
-				this.imageSrc = null
+				this.storageatus = null;
+				this.likes = null;
+				this.photo = null;
+				this.imageSrc = null;
 			}
 		})
 	},
 	data () {
 		return {
-			status: null,
+			storageatus: null,
 			likes: null,
 			unlikes: null,
 			photo: null,
 			imageSrc: null,
 			templatesWOLikes: null,
-			currentTemplate: 0
+			currentTemplate: 0,
 		}
 	},
 	computed: {
 		dataPhoto () {
 			return {
-				photo: this.photo
+				photo: this.photo,
 			}
 		}
 	},
 	methods: {
 		approve (templateId, likes) {
-			this.likes = likes + 1
+			this.likes = likes + 1;
 			if (this.likes >= 3) {
-				this.status = 2
+				this.storageatus = 2;
 			} else {
-				this.status = 1
+				this.storageatus = 1;
 			}
-			db.ref('/templates/' + templateId).update({
+			database.ref('/templates/' + templateId).update({
 				likes: this.likes,
-				status: this.status
+				storageatus: this.storageatus,
 			}).then(() => {
-				this.render(this.templatesWOLikes[++this.currentTemplate])
+				this.render(this.templatesWOLikes[++this.currentTemplate]);
 			})
 		},
 		dismiss (templateId, unlikes) {
-			this.unlikes = unlikes + 1
+			this.unlikes = unlikes + 1;
 			if (this.unlikes >= 3) {
-				this.status = 3
+				this.storageatus = 3;
 			} else {
-				this.status = 1
+				this.storageatus = 1;
 			}
-			db.ref('/templates/' + templateId).update({
+			database.ref('/templates/' + templateId).update({
 				unlikes: this.unlikes,
-				status: this.status
+				storageatus: this.storageatus,
 			}).then((result) => {
-				console.log()
+				console.log(result);
 			})
 		},
 		render (template) {
-			console.log(template.image)
-			const result = template
-			const sref = st.ref()
-			const imgref = sref.child('images')
-			this.photo = result
-			const image = imgref.child(this.photo.image)
-			this.likes = this.photo.likes
-			this.status = this.status
+			console.log(template.image);
+			const result = template;
+			const sref = storage.ref();
+			const imgref = sref.child('images');
+			this.photo = result;
+			const image = imgref.child(this.photo.image);
+			this.likes = this.photo.likes;
+			this.storageatus = this.storageatus;
 
 			image.getDownloadURL().then((url) => {
-				this.imageSrc = url
+				this.imageSrc = url;
 			}).catch((error) => {
 				switch (error.code) {
-				case 'storage/object_not_found':
-					console.log('file doesnt exist')
-					break
-				case 'storage/unauthorized':
-					console.log('not permissions')
-					break
+				case 'storageorage/object_not_found':
+					console.log('file doesnt existorage');
+					break;
+				case 'storageorage/unauthorized':
+					console.log('not permissions');
+					break;
 				}
 			})
 		}
 	}
-}
+};
 </script>

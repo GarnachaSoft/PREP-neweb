@@ -16,8 +16,8 @@
 </template>
 
 <script>
-	import Photo from '@/components/Photo'
+	import Photo from '@/components/Photo';
 	export default {
 		components: { Photo }
-	}
+	};
 </script>

@@ -1,5 +1,5 @@
 <template>
-    
+
 </template>
 
 <style>
@@ -57,5 +57,5 @@
 <script>
     export default{
 
-    }
+    };
 </script>

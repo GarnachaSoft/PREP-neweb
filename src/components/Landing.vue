@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="row">
-                            <carousel 
+                            <carousel
                                 :per-page-custom="[[320, 1], [1199, 4]]"
                                 paginationActiveColor="#0CCC8A"
                                 paginationColor="#fff">
@@ -50,7 +50,7 @@
                         <h2>¿Quienes Somos?</h2>
                     </div>
                     <div class="col-md-12">
-                        <carousel 
+                        <carousel
                             :per-page-custom="[[320, 1], [1199, 4]]"
                             paginationActiveColor="#0CCC8A"
                             paginationColor="#fff">
@@ -75,11 +75,11 @@
 </template>
 
 <script>
-    import Vue from 'vue'
-    import VueCarousel from 'vue-carousel'
+    import Vue from 'vue';
+    import VueCarousel from 'vue-carousel';
 
-    Vue.use(VueCarousel)
+    Vue.use (VueCarousel)
 
     export default {
-    }
+    };
 </script>

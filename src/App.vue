@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import Styles from './components/Styles'
-import Header from './components/Template/Header'
+import Styles from './components/Styles';
+import Header from './components/Template/Header';
 
-export default{
-	components: {Header, Styles}
-}
+export default {
+	components: { Header, Styles }
+};
 </script>
